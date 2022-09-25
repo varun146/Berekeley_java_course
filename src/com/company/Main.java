@@ -4,7 +4,7 @@ public class Main {
 
 //    public static void mergesort(int[] arr){
 //        mergesort(arr, new int[arr.length], 0, arr.length-1);
-//    }
+
 //
 //    public static void mergesort(int[] arr, int[] temp, int leftStart, int rigthEnd){
 //        if(leftStart >= rigthEnd) return;
@@ -64,11 +64,13 @@ public class Main {
             k++;
         }
 
+
         while(j < rightsize){
             inputArray[k] = righthalf[j];
             j++;
             k++;
         }
+
     }
 
 
@@ -76,30 +78,30 @@ public class Main {
 
     public static void main(String[] args) {
         Random rand = new Random();
-        int[] array = new int[10];
+        int[] array = new int[10000000];
 
 
 
         for (int i = 0; i < array.length; i++) {
-            array[i] = rand.nextInt(100);
+            array[i] = rand.nextInt(1000);
         }
         System.out.println("Before Sorting");
         printarray(array);
 
+        System.out.println();
+
 //        mergeSort(array);
-//        bubbleSort(array);
+        bubbleSort(array);
 //        quickSort(array);
+        System.out.println();
 
         System.out.println("After Sorting");
         printarray(array);
     }
 
-
-
-
     public static void printarray(int[] arr){
         for (int i = 0; i < arr.length; i++) {
-            System.out.println(arr[i]);
+            System.out.print(arr[i] + " ");
         }
     }
 
@@ -163,6 +165,5 @@ public class Main {
         arr[left] = arr[right];
         arr[right] = temp;
     }
-
 
 }

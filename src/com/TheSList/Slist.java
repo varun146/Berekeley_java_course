@@ -81,5 +81,7 @@ public class Slist<T> implements List61B<T> {
         l.addLast(1000);
         l.printList();
         System.out.println(l.getLast());
+
+
     }
 }
