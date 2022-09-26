@@ -3,6 +3,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 public class ArraySet<T> implements Iterable<T> {
     private T[] items;
@@ -27,9 +28,9 @@ public class ArraySet<T> implements Iterable<T> {
     /* Associates the specified value with the specified key in this map.
        Throws an IllegalArgumentException if the key is null. */
     public void add(T x) {
-        if (x == null) {
-            throw new IllegalArgumentException("can't add null");
-        }
+//        if (x == null) {
+//            throw new IllegalArgumentException("can't add null");
+//        }
         if (contains(x)) {
             return;
         }
@@ -66,18 +67,37 @@ public class ArraySet<T> implements Iterable<T> {
     }
 
     @Override
-    public String toString() {
-        StringBuilder returnSB = new StringBuilder("{");
-        for (int i = 0; i < size - 1; i += 1) {
-            returnSB.append(items[i].toString());
-            returnSB.append(", ");
+    public boolean equals(Object other){
+        if(other == null){
+            return false;
         }
-        returnSB.append(items[size - 1]);
-        returnSB.append("}");
-        return returnSB.toString();
+        if(other.getClass() != ArraySet.class){
+            return false;
+        }
+        ArraySet<T> o = (ArraySet<T>) other;
+        if(o.size() != this.size()){
+            return false;
+        }
+        for(T item : this){
+            if(!o.contains(item)){
+                return false;
+            }
+        }
+        return true;
     }
 
-    /* EXTRA VIDEO CODE
+//    @Override
+//    public String toString() {
+//        StringBuilder returnSB = new StringBuilder("{");
+//        for (int i = 0; i < size - 1; i += 1) {
+//            returnSB.append(items[i].toString());
+//            returnSB.append(", ");
+//        }
+//        returnSB.append(items[size - 1]);
+//        returnSB.append("}");
+//        return returnSB.toString();
+//    }
+
     @Override
     public String toString() {
         List<String> listOfItems = new ArrayList<>();
@@ -85,7 +105,7 @@ public class ArraySet<T> implements Iterable<T> {
             listOfItems.add(x.toString());
         }
         return "{" + String.join(", ", listOfItems) + "}";
-    } */
+    }
 
     /* EXTRA VIDEO CODE
     public static <Glerp> ArraySet<Glerp> of(Glerp... stuff) {
@@ -96,29 +116,6 @@ public class ArraySet<T> implements Iterable<T> {
         return returnSet;
     } */
 
-
-    @Override
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (other == null) {
-            return false;
-        }
-        if (other.getClass() != this.getClass()) {
-            return false;
-        }
-        ArraySet<T> o = (ArraySet<T>) other;
-        if (o.size() != this.size()) {
-            return false;
-        }
-        for (T item : this) {
-            if (!o.contains(item)) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     public static int median(int[] arr){
         int left = 0;
@@ -132,17 +129,32 @@ public class ArraySet<T> implements Iterable<T> {
         }
     }
 
-    public static void main(String[] args) {
-        ArraySet<Integer> aset = new ArraySet<>();
-        aset.add(5);
-        aset.add(23);
-        aset.add(42);
+    public static <Generic> ArraySet<Generic> of(Generic... stuff) // var args -> variable number of arguments
+    {
+        ArraySet<Generic> returnSet = new ArraySet<Generic>();
+        for(Generic x: stuff){
+            returnSet.add(x);
+        }
+        return returnSet;
+    }
 
-        List<Integer> list = new ArrayList<>();
-        list.add(546);
-        list.add(90);
-        list.add(56);
-        System.out.println(list);
+    public static void main(String[] args) {
+        ArraySet<String> aset = new ArraySet<String>();
+
+        aset.add(null);
+        aset.add("dog");
+        aset.add("Horse");
+
+
+//
+//        List<Integer> list = new ArrayList<>();
+//        list.add(546);
+//        list.add(90);
+//        list.add(56);
+//        System.out.println(list.equals(aset2));
+//        System.out.println(list.equals("Hello"));
+//        System.out.println(list.equals(56));
+
 
 
 
