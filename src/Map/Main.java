@@ -1,23 +1,19 @@
 package Map;
 
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
 
 
-        Hashtable<String, Integer> ht = new Hashtable<>();
-        Map<String, Integer> map = new HashMap<>();
-        map.put("Varun", 89);
-        map.put(null, 56);
+      List<Integer> list = new ArrayList<>();
+      list.add(6);
+      list.add(5);
+      list.add(4);
+      list.add(3);
+      list.add(2);
+      list.add(1);
 
-        ht.put("Chandan", 99);
-        ht.put("Tiger", 00);
-//        ht.put(null, 12);
-        System.out.println(map);
-        System.out.println(ht);
     }
 }
